@@ -1533,6 +1533,72 @@
             font: italic 21px/1.5 'Cormorant Garamond', serif
         }
 
+        .schedule {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 76px 28px 20px;
+            text-align: center
+        }
+
+        .schedule h2 {
+            margin: 8px 0 30px;
+            color: var(--green);
+            font: 500 clamp(2.6rem, 7vw, 4.6rem)/.9 'Cormorant Garamond', serif
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            max-width: 900px;
+            margin: 0 auto
+        }
+
+        .schedule-card {
+            padding: 26px 22px;
+            border: 1px solid rgba(177, 138, 74, .42);
+            background: rgba(255, 253, 248, .72);
+            box-shadow: 0 18px 35px rgba(40, 51, 56, .07)
+        }
+
+        .schedule-card h3 {
+            margin: 9px 0 12px;
+            color: #a8752e;
+            font: 600 30px/1 'Cormorant Garamond', serif
+        }
+
+        .schedule-card strong {
+            display: block;
+            color: var(--green);
+            font: 600 14px Montserrat;
+            letter-spacing: .08em;
+            text-transform: uppercase
+        }
+
+        .schedule-card p {
+            margin: 12px 0 0;
+            color: #59636a;
+            font: 17px/1.45 'Cormorant Garamond', serif
+        }
+
+        .schedule-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px
+        }
+
+        @media(max-width:620px) {
+            .schedule {
+                padding: 58px 18px 10px
+            }
+
+            .schedule-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
         .gifts .eyebrow {
             color: #a8752e;
             font: 600 30px/1 'Cormorant Garamond', serif;
@@ -1692,6 +1758,38 @@
                     </div>
                 </div>
             </section>
+            <section class="schedule" aria-labelledby="schedule-title">
+                <div class="eyebrow">The schedule</div>
+                <h2 id="schedule-title">Two moments, one beautiful beginning</h2>
+                <div class="schedule-grid">
+                    <article class="schedule-card">
+                        <div class="eyebrow">28 November 2026 · 7 PM onwards</div>
+                        <h3>Nikah</h3>
+                        <strong>Kohinoor Marriage Lawn</strong>
+                        <p>Kohinoor Marriage Lawn, 4RQQ+332, Veera Desai Rd,<br>Mhada Colony, Prathmesh Complex, Andheri
+                            West,<br>Mumbai, Maharashtra 400053</p>
+                        <div class="schedule-actions">
+                            <a class="button" target="_blank" rel="noopener"
+                                href="https://www.google.com/maps/dir/?api=1&amp;destination=Kohinoor%20Marriage%20Lawn%2C%204RQQ%2B332%2C%20Veera%20Desai%20Rd%2C%20Mhada%20Colony%2C%20Prathmesh%20Complex%2C%20Andheri%20West%2C%20Mumbai%2C%20Maharashtra%20400053">Get
+                                directions</a>
+                            <button class="button alt" id="share-nikah" type="button">Share invitation</button>
+                        </div>
+                    </article>
+                    <article class="schedule-card">
+                        <div class="eyebrow">30 November 2026</div>
+                        <h3>Dawat-e-Walima</h3>
+                        <strong>Sir Elly Kadoorie School and Junior College</strong>
+                        <p>Sir Elly Kadoorie School and Junior College,<br>Shivdas Champsi Rd, Opposite Chaitya
+                            Temple,<br>Tadwadi, Mazgaon, Mumbai, Maharashtra 400010</p>
+                        <div class="schedule-actions">
+                            <a class="button" target="_blank" rel="noopener"
+                                href="https://www.google.com/maps/dir/?api=1&amp;destination=Sir%20Elly%20Kadoorie%20School%20and%20Junior%20College%2C%20Shivdas%20Champsi%20Rd%2C%20Opposite%20Chaitya%20Temple%2C%20Tadwadi%2C%20Mazgaon%2C%20Mumbai%2C%20Maharashtra%20400010">Get
+                                directions</a>
+                            <button class="button alt" id="share-walima" type="button">Share invitation</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
             <section class="section event">
                 <div class="eyebrow">The celebration</div>
                 <h2>Join us for<br>an evening of joy</h2>
@@ -1725,25 +1823,6 @@
                     </form>
                 </div>
             </section>
-            <!-- Reception card temporarily disabled while the invitation focuses on the Nikah event.
-            <section class="section event walima-event">
-                <div class="walima-card">
-                    <div class="eyebrow">Reception · Dawat-e-Walima</div>
-                    <h2>Continue the celebration<br>with us</h2>
-                    <div class="event-grid">
-                        <div class="event-item"><strong>30</strong><span>November 2026</span></div>
-                        <div class="event-item"><strong>W</strong><span>Dawat-e-Walima</span></div>
-                        <div class="event-item"><strong>SEK</strong><span>Sir Elly Kadoorie School</span></div>
-                    </div>
-                    <p class="address">Sir Elly Kadoorie School and Junior College,<br>Shivdas Champsi Rd, Opposite
-                        Chaitya
-                        Temple,<br>Tadwadi, Mazgaon, Mumbai, Maharashtra 400010</p>
-                    <div class="actions"><a class="button" target="_blank" rel="noopener"
-                            href="https://www.google.com/maps/dir/?api=1&amp;destination=Sir%20Elly%20Kadoorie%20School%20and%20Junior%20College%2C%20Shivdas%20Champsi%20Rd%2C%20Opposite%20Chaitya%20Temple%2C%20Tadwadi%2C%20Mazgaon%2C%20Mumbai%2C%20Maharashtra%20400010">Get
-                            directions</a></div>
-                </div>
-            </section>
-            -->
             <footer class="footer">
                 <div class="eyebrow">With love</div>
                 <img class="footer-logo" src="assets/WhatsApp%20Image%202026-09-19%20at%203.36.58%20PM.jpeg"
@@ -1786,6 +1865,9 @@
             heartCanvas.addEventListener('mousedown', fallbackStart); heartCanvas.addEventListener('mousemove', fallbackErase); heartCanvas.addEventListener('touchstart', fallbackStart, { passive: false }); heartCanvas.addEventListener('touchmove', fallbackErase, { passive: false }); addEventListener('mouseup', fallbackStop); addEventListener('touchend', fallbackStop);
         });
         document.querySelector('#share').addEventListener('click', () => { const invitationUrl = 'https://faizanchowdhry.github.io/faizan-zia-invite/wedding-invite.html'; const message = `Join Faizan & Zia on 28th November from 7 PM at Kohinoor Marriage Lawn, 4RQQ+332, Veera Desai Rd, Mhada Colony, Prathmesh Complex, Andheri West, Mumbai, Maharashtra 400053.\n\n${invitationUrl}`; window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank', 'noopener'); });
+        const invitationUrl = 'https://faizanchowdhry.github.io/faizan-zia-invite/wedding-invite.html'; const shareOnWhatsApp = message => window.open(`https://wa.me/?text=${encodeURIComponent(`${message}\n\n${invitationUrl}`)}`, '_blank', 'noopener');
+        document.querySelector('#share-nikah').addEventListener('click', () => shareOnWhatsApp('Join us for the Nikah on 28th November from 7 PM at Kohinoor Marriage Lawn, 4RQQ+332, Veera Desai Rd, Mhada Colony, Prathmesh Complex, Andheri West, Mumbai, Maharashtra 400053.'));
+        document.querySelector('#share-walima').addEventListener('click', () => shareOnWhatsApp('Join us for the Dawat-e-Walima on 30th November at Sir Elly Kadoorie School and Junior College, Shivdas Champsi Rd, Opposite Chaitya Temple, Tadwadi, Mazgaon, Mumbai, Maharashtra 400010.'));
         const rsvpForm = document.querySelector('#rsvp');
         function showerPetals() { if (document.body.dataset.petals) return; document.body.dataset.petals = 'done'; for (let index = 0; index < 150; index++) { const petal = document.createElement('span'); const heart = index % 5 === 0; petal.className = heart ? 'petal heart' : 'petal'; petal.textContent = heart ? '♥' : index % 3 === 0 ? '✿' : '❀'; petal.style.left = Math.random() * 100 + 'vw'; petal.style.setProperty('--drift', (Math.random() * 260 - 130) + 'px'); petal.style.setProperty('--fall', (18 + Math.random() * 8) + 's'); petal.style.animationDelay = (Math.random() * 6) + 's'; petal.style.fontSize = (12 + Math.random() * 13) + 'px'; document.body.appendChild(petal); setTimeout(() => petal.remove(), 32000) } }
         envelope.addEventListener('click', showerPetals);
@@ -1818,12 +1900,12 @@
         });
     </script>
     <script>
-        document.querySelector('.letter .eyebrow').textContent = 'You are invited to our Nikah';
+        document.querySelector('.letter .eyebrow').textContent = 'You are invited to our Nikah & Reception';
         document.querySelector('.letter h2').innerHTML = 'Faizan Chowdhry <span>&amp;</span> Zia Sayed';
     </script>
     <script>
         const gateway = document.querySelector('#envelope');
-        gateway.innerHTML = '<div class="jannah-gate"><div class="gate-caption">Tap to open the doors</div><img class="gate-lock-logo" src="assets/WhatsApp%20Image%202026-09-19%20at%203.36.58%20PM.jpeg" alt="Open the invitation"><div class="gate-frame"></div><div class="gate-open-card"><div class="gate-open-inner"><div class="eyebrow">You are invited to our Nikah</div><h2>Faizan Chowdhry <span>&amp;</span> Zia Sayed</h2></div></div><div class="gate-doors"><div class="gate-door gate-left"><span class="gate-handle"></span></div><div class="gate-door gate-right"><span class="gate-handle"></span></div></div></div><div class="tap">Tap the golden doors to enter</div>';
+        gateway.innerHTML = '<div class="jannah-gate"><div class="gate-caption">Tap to open the doors</div><img class="gate-lock-logo" src="assets/WhatsApp%20Image%202026-09-19%20at%203.36.58%20PM.jpeg" alt="Open the invitation"><div class="gate-frame"></div><div class="gate-open-card"><div class="gate-open-inner"><div class="eyebrow">You are invited to our Nikah &amp; Reception</div><h2>Faizan Chowdhry <span>&amp;</span> Zia Sayed</h2></div></div><div class="gate-doors"><div class="gate-door gate-left"><span class="gate-handle"></span></div><div class="gate-door gate-right"><span class="gate-handle"></span></div></div></div><div class="tap">Tap the golden doors to enter</div>';
     </script>
     <style>
         .page {
@@ -3397,7 +3479,7 @@
     </style>
     <script>
         const finalGateway = document.querySelector('#envelope');
-        finalGateway.innerHTML = '<div class="envelope-gate"><img class="envelope-cover" src="assets/WhatsApp%20Image%202026-09-19%20at%205.02.13%20PM.jpeg" alt="Open the wedding invitation"><div class="gate-open-card"><div class="gate-open-inner"><div class="eyebrow">You are invited to our Nikah</div><h2>Faizan Chowdhry <span>&amp;</span> Zia Sayed</h2></div></div></div>';
+        finalGateway.innerHTML = '<div class="envelope-gate"><img class="envelope-cover" src="assets/WhatsApp%20Image%202026-09-19%20at%205.02.13%20PM.jpeg" alt="Open the wedding invitation"><div class="gate-open-card"><div class="gate-open-inner"><div class="eyebrow">You are invited to our Nikah &amp; Reception</div><h2>Faizan Chowdhry <span>&amp;</span> Zia Sayed</h2></div></div></div>';
         finalGateway.addEventListener('click', openInvite);
 
         const sparkleLayer = document.createElement('div'); sparkleLayer.className = 'sparkle-layer';
