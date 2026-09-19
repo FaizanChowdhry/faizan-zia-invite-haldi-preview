@@ -1820,6 +1820,22 @@
                             <div class="heart-scratch"><strong>2026</strong><canvas data-event-heart></canvas></div>
                         </div>
                         <p class="event-date-time">7 PM ONWARDS</p>
+                        <div class="event-date-countdown" data-event-countdown="2026-11-24T19:00:00+05:30">
+                            <div class="timer">
+                                <div class="unit"><strong data-countdown-days>--</strong><span>Days</span></div>
+                                <div class="unit"><strong data-countdown-hours>--</strong><span>Hours</span></div>
+                                <div class="unit"><strong data-countdown-minutes>--</strong><span>Minutes</span></div>
+                                <div class="unit"><strong data-countdown-seconds>--</strong><span>Seconds</span></div>
+                            </div>
+                        </div>
+                        <div class="event-date-countdown" data-event-countdown="2026-11-30T19:00:00+05:30">
+                            <div class="timer">
+                                <div class="unit"><strong data-countdown-days>--</strong><span>Days</span></div>
+                                <div class="unit"><strong data-countdown-hours>--</strong><span>Hours</span></div>
+                                <div class="unit"><strong data-countdown-minutes>--</strong><span>Minutes</span></div>
+                                <div class="unit"><strong data-countdown-seconds>--</strong><span>Seconds</span></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="scratch-card">
@@ -1940,6 +1956,7 @@
         function openInvite() { startMusic(); if (page.classList.contains('open-page')) return; envelope.classList.add('opened'); setTimeout(() => { page.classList.add('open-page'); setTimeout(() => { document.querySelector('#content').scrollIntoView({ behavior: 'smooth' }); setTimeout(resizeCanvas, 100); setTimeout(resizeCanvas, 500); }, 10000); }, 1000) }
         envelope.addEventListener('pointerdown', startMusic, { passive: true }); envelope.addEventListener('click', openInvite); envelope.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { startMusic(); openInvite() } });
         const target = new Date('2026-11-28T19:00:00+05:30').getTime(); let countdownStarted = false; function updateCountdown() { if (!countdownStarted) return; let distance = Math.max(0, target - Date.now()); const day = Math.floor(distance / 86400000); distance %= 86400000; const hour = Math.floor(distance / 3600000); distance %= 3600000; const minute = Math.floor(distance / 60000); const second = Math.floor(distance / 1000) % 60; document.querySelector('#days').textContent = String(day).padStart(2, '0'); document.querySelector('#hours').textContent = String(hour).padStart(2, '0'); document.querySelector('#minutes').textContent = String(minute).padStart(2, '0'); document.querySelector('#seconds').textContent = String(second).padStart(2, '0') } function startCountdown() { if (countdownStarted) return; countdownStarted = true; document.querySelector('.countdown-timer').classList.add('is-started'); updateCountdown(); } setInterval(updateCountdown, 1000);
+        function updateEventCountdowns() { document.querySelectorAll('[data-event-countdown]').forEach(countdown => { let distance = Math.max(0, new Date(countdown.dataset.eventCountdown).getTime() - Date.now()); const days = Math.floor(distance / 86400000); distance %= 86400000; const hours = Math.floor(distance / 3600000); distance %= 3600000; const minutes = Math.floor(distance / 60000); const seconds = Math.floor(distance / 1000) % 60; countdown.querySelector('[data-countdown-days]').textContent = String(days).padStart(2, '0'); countdown.querySelector('[data-countdown-hours]').textContent = String(hours).padStart(2, '0'); countdown.querySelector('[data-countdown-minutes]').textContent = String(minutes).padStart(2, '0'); countdown.querySelector('[data-countdown-seconds]').textContent = String(seconds).padStart(2, '0'); }); } updateEventCountdowns(); setInterval(updateEventCountdowns, 1000);
         const canvas = document.querySelector('#scratchCanvas'); const context = canvas.getContext('2d', { willReadFrequently: true }); const scratchWrap = document.querySelector('#scratchWrap'); const RSVP_EMAIL = 'chowdhary.faizan60@gmail.com'; const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwrlz7Z9_p8W5UzZPd3PDTCweOCTBGW4wPG6fGBmL-dlXc_yHly8PFy_qBJp5RhsKMACg/exec'; let drawing = false; let scratched = 0; function resizeCanvas() { const width = scratchWrap.offsetWidth || scratchWrap.clientWidth || 300; const height = scratchWrap.offsetHeight || scratchWrap.clientHeight || 150; canvas.width = width; canvas.height = height; canvas.style.width = width + 'px'; canvas.style.height = height + 'px'; context.setTransform(1, 0, 0, 1, 0, 0); context.clearRect(0, 0, canvas.width, canvas.height); context.fillStyle = 'rgba(173, 138, 92, 0.96)'; context.fillRect(0, 0, canvas.width, canvas.height); context.fillStyle = '#f5e7c8'; context.font = '600 11px Montserrat'; context.textAlign = 'center'; context.fillText('✦  SCRATCH HERE  ✦', canvas.width / 2, canvas.height / 2 + 4); }
         function revealScratchStatus() { const data = context.getImageData(0, 0, canvas.width, canvas.height).data; let transparentPixels = 0; for (let index = 3; index < data.length; index += 4) { if (data[index] < 40) transparentPixels += 1 } const revealRatio = transparentPixels / (canvas.width * canvas.height); if (revealRatio > 0.12) scratchWrap.classList.add('scratched'); }
         let lastPoint = null;
@@ -3575,6 +3592,35 @@
 
         .event-date-scratch-wrap.event-date-complete .event-date-time {
             opacity: 1
+        }
+
+        .event-date-countdown {
+            opacity: 0;
+            margin-top: 14px;
+            transition: opacity .45s ease
+        }
+
+        .event-date-scratch-wrap.event-date-complete .event-date-countdown {
+            opacity: 1
+        }
+
+        .event-date-countdown .timer {
+            display: flex;
+            justify-content: center;
+            gap: 12px
+        }
+
+        .event-date-countdown .unit strong {
+            display: block;
+            color: var(--gold);
+            font: 600 24px 'Cormorant Garamond', serif
+        }
+
+        .event-date-countdown .unit span {
+            color: #796b59;
+            font: 600 7px Montserrat;
+            letter-spacing: .08em;
+            text-transform: uppercase
         }
 
         @media(max-width:620px) {
