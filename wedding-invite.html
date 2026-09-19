@@ -1548,7 +1548,7 @@
 
         .schedule-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 18px;
             max-width: 900px;
             margin: 0 auto
@@ -1767,7 +1767,7 @@
             </section>
             <section class="schedule" aria-labelledby="schedule-title">
                 <div class="eyebrow">The schedule</div>
-                <h2 id="schedule-title">Two moments, one beautiful beginning</h2>
+                <h2 id="schedule-title">Three moments, one beautiful beginning</h2>
                 <div class="schedule-grid">
                     <article class="schedule-card">
                         <div class="eyebrow">28 November 2026 · 7 PM onwards</div>
@@ -1795,12 +1795,26 @@
                             <button class="button alt" id="share-walima" type="button">Share invitation</button>
                         </div>
                     </article>
+                    <article class="schedule-card">
+                        <div class="eyebrow">24 November 2026 · 7 PM onwards</div>
+                        <h3>Faizan's Haldi</h3>
+                        <strong>Khatri Jamat Hall</strong>
+                        <p>Khatri Jamat Hall, 162, Bapu Kothe St,<br>Marine Lines East, Jamli Mohalla,
+                            Panjarpole,<br>Kalbadevi, Mumbai, Maharashtra 400003</p>
+                        <div class="schedule-actions">
+                            <a class="button" target="_blank" rel="noopener"
+                                href="https://www.google.com/maps/dir/?api=1&amp;destination=Khatri%20Jamat%20Hall%2C%20162%2C%20Bapu%20Kothe%20St%2C%20Marine%20Lines%20East%2C%20Jamli%20Mohalla%2C%20Panjarpole%2C%20Kalbadevi%2C%20Mumbai%2C%20Maharashtra%20400003">Get
+                                directions</a>
+                            <button class="button alt" id="share-haldi" type="button">Share invitation</button>
+                        </div>
+                    </article>
                 </div>
             </section>
             <section class="section event">
                 <div class="eyebrow">The celebration</div>
                 <h2>Join us for<br>an evening of joy</h2>
-                <p class="celebration-note">Come celebrate both events with us as two families become one.
+                <p class="celebration-note">Come celebrate all three beautiful occasions with us as two families become
+                    one.
                 </p>
                 <div class="gifts">
                     <div class="eyebrow">Gifts</div>
@@ -1865,6 +1879,7 @@
         const invitationUrl = 'https://faizanchowdhry.github.io/faizan-zia-invite/wedding-invite.html'; const shareOnWhatsApp = message => window.open(`https://wa.me/?text=${encodeURIComponent(`${message}\n\n${invitationUrl}`)}`, '_blank', 'noopener');
         document.querySelector('#share-nikah').addEventListener('click', () => shareOnWhatsApp('Join us for the Nikah on 28th November from 7 PM at Kohinoor Marriage Lawn, 4RQQ+332, Veera Desai Rd, Mhada Colony, Prathmesh Complex, Andheri West, Mumbai, Maharashtra 400053.'));
         document.querySelector('#share-walima').addEventListener('click', () => shareOnWhatsApp('Join us for the Dawat-e-Walima on 30th November at Sir Elly Kadoorie School and Junior College, XR8Q+HM5, Shivdas Champsi Rd, Opposite Chaitya Temple, Tadwadi, Mazgaon, Mumbai, Maharashtra 400010.'));
+        document.querySelector('#share-haldi').addEventListener('click', () => shareOnWhatsApp("Join us for Faizan's Haldi ceremony on 24th November 2026 from 7 PM onwards at Khatri Jamat Hall, 162, Bapu Kothe St, Marine Lines East, Jamli Mohalla, Panjarpole, Kalbadevi, Mumbai, Maharashtra 400003."));
         const rsvpForm = document.querySelector('#rsvp');
         function showerPetals() { if (document.body.dataset.petals) return; document.body.dataset.petals = 'done'; for (let index = 0; index < 150; index++) { const petal = document.createElement('span'); const heart = index % 5 === 0; petal.className = heart ? 'petal heart' : 'petal'; petal.textContent = heart ? '♥' : index % 3 === 0 ? '✿' : '❀'; petal.style.left = Math.random() * 100 + 'vw'; petal.style.setProperty('--drift', (Math.random() * 260 - 130) + 'px'); petal.style.setProperty('--fall', (18 + Math.random() * 8) + 's'); petal.style.animationDelay = (Math.random() * 6) + 's'; petal.style.fontSize = (12 + Math.random() * 13) + 'px'; document.body.appendChild(petal); setTimeout(() => petal.remove(), 32000) } }
         envelope.addEventListener('click', showerPetals);
