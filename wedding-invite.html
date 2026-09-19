@@ -1819,7 +1819,6 @@
                             <div class="heart-scratch"><strong>NOV</strong><canvas data-event-heart></canvas></div>
                             <div class="heart-scratch"><strong>2026</strong><canvas data-event-heart></canvas></div>
                         </div>
-                        <p class="event-date-time">7 PM ONWARDS</p>
                         <div class="event-date-countdown" data-event-countdown="2026-11-30T19:00:00+05:30">
                             <div class="timer">
                                 <div class="unit"><strong data-countdown-days>--</strong><span>Days</span></div>
@@ -1840,7 +1839,6 @@
                             <div class="heart-scratch"><strong>NOV</strong><canvas data-event-heart></canvas></div>
                             <div class="heart-scratch"><strong>2026</strong><canvas data-event-heart></canvas></div>
                         </div>
-                        <p class="event-date-time">7 PM ONWARDS</p>
                         <div class="event-date-countdown" data-event-countdown="2026-11-24T19:00:00+05:30">
                             <div class="timer">
                                 <div class="unit"><strong data-countdown-days>--</strong><span>Days</span></div>
@@ -1988,7 +1986,7 @@
         document.querySelectorAll('[data-event-heart]').forEach(heartCanvas => { const revealIfScratched = () => { const context = heartCanvas.getContext('2d'); const data = context.getImageData(0, 0, heartCanvas.width, heartCanvas.height).data; let clearPixels = 0; for (let index = 3; index < data.length; index += 4) if (data[index] < 40) clearPixels += 1; if (clearPixels / (heartCanvas.width * heartCanvas.height) > .12) { heartCanvas.classList.add('revealed'); heartCanvas.parentElement.classList.add('revealed'); } }; heartCanvas.addEventListener('pointerdown', event => { try { heartCanvas.setPointerCapture(event.pointerId); } catch { } }); heartCanvas.addEventListener('pointerup', revealIfScratched); });
         document.querySelectorAll('[data-event-heart]').forEach(heartCanvas => { const heart = heartCanvas.parentElement; let drawing = false; let lastPoint = null; const erase = event => { if (!drawing || event.target === heartCanvas) return; const rect = heartCanvas.getBoundingClientRect(); const point = { x: event.clientX - rect.left, y: event.clientY - rect.top }; const context = heartCanvas.getContext('2d'); context.globalCompositeOperation = 'destination-out'; context.lineCap = 'round'; context.lineWidth = 18; context.beginPath(); if (lastPoint) { context.moveTo(lastPoint.x, lastPoint.y); context.lineTo(point.x, point.y); } else context.moveTo(point.x, point.y); context.lineTo(point.x, point.y); context.stroke(); context.globalCompositeOperation = 'source-over'; lastPoint = point; }; const start = event => { if (event.target === heartCanvas) return; event.preventDefault(); drawing = true; lastPoint = null; erase(event); }; const stop = () => { drawing = false; lastPoint = null; const data = heartCanvas.getContext('2d').getImageData(0, 0, heartCanvas.width, heartCanvas.height).data; let clearPixels = 0; for (let index = 3; index < data.length; index += 4) if (data[index] < 40) clearPixels += 1; if (clearPixels / (heartCanvas.width * heartCanvas.height) > .12) { heartCanvas.classList.add('revealed'); heart.classList.add('revealed'); } }; heart.addEventListener('pointerdown', start); heart.addEventListener('pointermove', erase); heart.addEventListener('pointerup', stop); heart.addEventListener('pointercancel', stop); });
         document.querySelectorAll('.event-date-scratch-wrap').forEach(wrap => { const observer = new MutationObserver(() => { const hearts = [...wrap.querySelectorAll('[data-event-heart]')]; if (hearts.length && hearts.every(heart => heart.parentElement.classList.contains('revealed'))) { wrap.classList.add('event-date-complete'); observer.disconnect(); } }); observer.observe(wrap, { subtree: true, attributes: true, attributeFilter: ['class'] }); });
-        document.querySelectorAll('[data-event-heart]').forEach(heartCanvas => { const checkComplete = () => { const wrap = heartCanvas.closest('.event-date-scratch-wrap'); if (!wrap) return; const hearts = [...wrap.querySelectorAll('[data-event-heart]')]; if (hearts.length && hearts.every(heart => heart.parentElement.classList.contains('revealed'))) wrap.classList.add('event-date-complete'); }; ['pointerup', 'mouseup', 'touchend'].forEach(type => heartCanvas.addEventListener(type, () => setTimeout(checkComplete, 0))); });
+        document.querySelectorAll('[data-event-heart]').forEach(heartCanvas => { const checkComplete = () => { const wrap = heartCanvas.closest('.event-date-scratch-wrap'); if (!wrap) return; const hearts = [...wrap.querySelectorAll('[data-event-heart]')]; if (hearts.length && hearts.every(heart => heart.parentElement.classList.contains('revealed'))) wrap.classList.add('event-date-complete'); };['pointerup', 'mouseup', 'touchend'].forEach(type => heartCanvas.addEventListener(type, () => setTimeout(checkComplete, 0))); });
         const invitationUrl = 'https://faizanchowdhry.github.io/faizan-zia-invite/wedding-invite.html'; const shareOnWhatsApp = message => window.open(`https://wa.me/?text=${encodeURIComponent(`${message}\n\n${invitationUrl}`)}`, '_blank', 'noopener');
         document.querySelector('#share-nikah').addEventListener('click', () => shareOnWhatsApp('Join us for the Nikah on 28th November from 7 PM at Kohinoor Marriage Lawn, 4RQQ+332, Veera Desai Rd, Mhada Colony, Prathmesh Complex, Andheri West, Mumbai, Maharashtra 400053.'));
         document.querySelector('#share-walima').addEventListener('click', () => shareOnWhatsApp('Join us for the Dawat-e-Walima on 30th November at Sir Elly Kadoorie School and Junior College, XR8Q+HM5, Shivdas Champsi Rd, Opposite Chaitya Temple, Tadwadi, Mazgaon, Mumbai, Maharashtra 400010.'));
@@ -3583,21 +3581,14 @@
             background: linear-gradient(135deg, #b58a42, #e4bd69 48%, #956725)
         }
 
-        .event-date-time {
-            margin: 12px 0 0;
-            color: var(--green);
-            font: 600 14px Montserrat;
-            opacity: 0;
-            transition: opacity .35s ease
-        }
-
-        .event-date-scratch-wrap.event-date-complete .event-date-time {
-            opacity: 1
-        }
-
         .event-date-countdown {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
             opacity: 0;
-            margin-top: 14px;
+            padding-top: 68px;
             transition: opacity .45s ease
         }
 
@@ -3614,14 +3605,23 @@
         .event-date-countdown .unit strong {
             display: block;
             color: var(--gold);
-            font: 600 24px 'Cormorant Garamond', serif
+            font: 500 38px 'Cormorant Garamond', serif
         }
 
         .event-date-countdown .unit span {
             color: #796b59;
-            font: 600 7px Montserrat;
-            letter-spacing: .08em;
+            display: block;
+            font: 600 8px Montserrat;
+            letter-spacing: .12em;
             text-transform: uppercase
+        }
+
+        .event-date-scratch-wrap {
+            overflow: visible
+        }
+
+        .event-date-scratch-wrap {
+            overflow: visible
         }
 
         @media(max-width:620px) {
