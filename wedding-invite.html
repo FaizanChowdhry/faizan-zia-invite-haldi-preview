@@ -1600,8 +1600,31 @@
         .schedule {
             max-width: 1040px;
             margin: 0 auto;
-            padding: 76px 28px 20px;
+            padding: 76px 28px 42px;
             text-align: center
+        }
+
+        .event-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 0 auto 28px
+        }
+
+        .event-nav a {
+            padding: 9px 12px;
+            border: 1px solid rgba(177, 138, 74, .42);
+            color: var(--green);
+            font: 600 8px Montserrat;
+            letter-spacing: .12em;
+            text-decoration: none;
+            text-transform: uppercase
+        }
+
+        .event-nav a:hover,
+        .event-nav a:focus-visible {
+            background: rgba(177, 138, 74, .14)
         }
 
         .schedule h2 {
@@ -1623,6 +1646,18 @@
             border: 1px solid rgba(177, 138, 74, .42);
             background: rgba(255, 253, 248, .72);
             box-shadow: 0 18px 35px rgba(40, 51, 56, .07)
+        }
+
+        .schedule-card:nth-child(1) {
+            border-top: 3px solid #c79b50
+        }
+
+        .schedule-card:nth-child(2) {
+            border-top: 3px solid #c88978
+        }
+
+        .schedule-card:nth-child(3) {
+            border-top: 3px solid #d8a63d
         }
 
         .schedule-card h3 {
@@ -1786,7 +1821,7 @@
                     <div class="signature-blessing">With the blessings of Allah, our journey begins</div>
                     <span class="signature-rule"></span>
                 </div>
-                <div class="scratch-card">
+                <div class="scratch-card" id="nikah-date">
                     <div class="eyebrow">A little reveal</div>
                     <h3>Scratch to reveal</h3>
                     <p>Discover the time remaining until our celebration</p>
@@ -1809,7 +1844,7 @@
                         <div class="scratch-label">Scratch gently to reveal</div>
                     </div>
                 </div>
-                <div class="scratch-card">
+                <div class="scratch-card" id="walima-date">
                     <div class="eyebrow">A little reveal</div>
                     <h3>Scratch to reveal</h3>
                     <div class="scratch-wrap event-date-scratch-wrap">
@@ -1829,7 +1864,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="scratch-card">
+                <div class="scratch-card" id="haldi-date">
                     <div class="eyebrow">A little reveal</div>
                     <h3>Scratch to reveal</h3>
                     <div class="scratch-wrap event-date-scratch-wrap">
@@ -1872,6 +1907,11 @@
             <section class="schedule" aria-labelledby="schedule-title">
                 <div class="eyebrow">The schedule</div>
                 <h2 id="schedule-title">Three moments, one beautiful beginning</h2>
+                <nav class="event-nav" aria-label="Event schedule">
+                    <a href="#nikah-date">Nikah</a>
+                    <a href="#walima-date">Dawat-E-Walima</a>
+                    <a href="#haldi-date">Golden Beginnings</a>
+                </nav>
                 <div class="schedule-grid">
                     <article class="schedule-card">
                         <div class="eyebrow">28 November 2026 · 7 PM onwards</div>
@@ -1944,13 +1984,16 @@
                 <img class="footer-logo" src="assets/WhatsApp%20Image%202026-09-19%20at%203.36.58%20PM.jpeg"
                     alt="Faizan and Zia gold floral monogram">
                 <h2>Faizan<br><span>&amp;</span><br>Zia</h2>
-                <p>We look forward to celebrating with you</p>
+                <p>We cannot wait to celebrate every beautiful moment with you</p>
             </footer>
         </section>
     </main>
+    <button class="music-toggle is-muted" id="musicToggle" type="button" aria-label="Turn music on"
+        title="Turn music on">🔇</button>
     <script>
         const page = document.querySelector('#page'); const envelope = document.querySelector('#envelope'); let inviteMusic; let musicStarted = false;
         function startMusic() { if (!inviteMusic) { inviteMusic = new Audio('assets/bismillah-salim-sulaiman-kailash-kher-munawar-masoom_XD0t5NLa.mp3'); inviteMusic.loop = true; inviteMusic.preload = 'auto'; inviteMusic.playsInline = true; inviteMusic.volume = .42; } if (musicStarted) { inviteMusic.play().catch(() => { }); return; } inviteMusic.play().then(() => { musicStarted = true; }).catch(() => { musicStarted = false; }); }
+        document.querySelector('#musicToggle').addEventListener('click', () => { if (!inviteMusic) startMusic(); if (!inviteMusic) return; inviteMusic.muted = !inviteMusic.muted; const toggle = document.querySelector('#musicToggle'); toggle.classList.toggle('is-muted', inviteMusic.muted); toggle.textContent = inviteMusic.muted ? '🔇' : '🔊'; toggle.setAttribute('aria-label', inviteMusic.muted ? 'Turn music on' : 'Mute music'); toggle.title = inviteMusic.muted ? 'Turn music on' : 'Mute music'; });
         function openInvite() { startMusic(); if (page.classList.contains('open-page')) return; envelope.classList.add('opened'); setTimeout(() => { page.classList.add('open-page'); setTimeout(() => { document.querySelector('#content').scrollIntoView({ behavior: 'smooth' }); setTimeout(resizeCanvas, 100); setTimeout(resizeCanvas, 500); }, 10000); }, 1000) }
         envelope.addEventListener('pointerdown', startMusic, { passive: true }); envelope.addEventListener('click', openInvite); envelope.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { startMusic(); openInvite() } });
         const target = new Date('2026-11-28T19:00:00+05:30').getTime(); let countdownStarted = false; function updateCountdown() { if (!countdownStarted) return; let distance = Math.max(0, target - Date.now()); const day = Math.floor(distance / 86400000); distance %= 86400000; const hour = Math.floor(distance / 3600000); distance %= 3600000; const minute = Math.floor(distance / 60000); const second = Math.floor(distance / 1000) % 60; document.querySelector('#days').textContent = String(day).padStart(2, '0'); document.querySelector('#hours').textContent = String(hour).padStart(2, '0'); document.querySelector('#minutes').textContent = String(minute).padStart(2, '0'); document.querySelector('#seconds').textContent = String(second).padStart(2, '0') } function startCountdown() { if (countdownStarted) return; countdownStarted = true; document.querySelector('.countdown-timer').classList.add('is-started'); updateCountdown(); } setInterval(updateCountdown, 1000);
@@ -3618,6 +3661,44 @@
 
         .event-date-scratch-wrap {
             overflow: visible
+        }
+
+        .music-toggle {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 30;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(177, 138, 74, .62);
+            border-radius: 50%;
+            background: rgba(255, 253, 248, .9);
+            color: #a8752e;
+            font-size: 17px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(91, 55, 16, .16)
+        }
+
+        .music-toggle.is-muted {
+            opacity: .62
+        }
+
+        .heart-scratch.revealed {
+            animation: heart-reveal-glow .8s ease-out
+        }
+
+        @keyframes heart-reveal-glow {
+            0% {
+                filter: drop-shadow(0 0 0 rgba(255, 221, 132, 0))
+            }
+
+            45% {
+                filter: drop-shadow(0 0 14px rgba(255, 221, 132, .95))
+            }
+
+            100% {
+                filter: drop-shadow(0 0 0 rgba(255, 221, 132, 0))
+            }
         }
 
         .event-date-scratch-wrap {
