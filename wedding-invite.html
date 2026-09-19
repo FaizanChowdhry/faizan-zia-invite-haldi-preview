@@ -1779,11 +1779,10 @@
                         <div class="eyebrow">30 November 2026</div>
                         <h3>Dawat-e-Walima</h3>
                         <strong>Sir Elly Kadoorie School and Junior College</strong>
-                        <p>Sir Elly Kadoorie School and Junior College,<br>Shivdas Champsi Rd, Opposite Chaitya
-                            Temple,<br>Tadwadi, Mazgaon, Mumbai, Maharashtra 400010</p>
+                        <p>Sir Elly Kadoorie School and Junior College,<br>XR8Q+HM5, Shivdas Champsi Rd, Opposite Chaitya Temple,<br>Tadwadi, Mazgaon, Mumbai, Maharashtra 400010</p>
                         <div class="schedule-actions">
                             <a class="button" target="_blank" rel="noopener"
-                                href="https://www.google.com/maps/dir/?api=1&amp;destination=Sir%20Elly%20Kadoorie%20School%20and%20Junior%20College%2C%20Shivdas%20Champsi%20Rd%2C%20Opposite%20Chaitya%20Temple%2C%20Tadwadi%2C%20Mazgaon%2C%20Mumbai%2C%20Maharashtra%20400010">Get
+                                href="https://www.google.com/maps/dir/?api=1&amp;destination=Sir%20Elly%20Kadoorie%20School%20and%20Junior%20College%2C%20XR8Q%2BHM5%2C%20Shivdas%20Champsi%20Rd%2C%20Opposite%20Chaitya%20Temple%2C%20Tadwadi%2C%20Mazgaon%2C%20Mumbai%2C%20Maharashtra%20400010">Get
                                 directions</a>
                             <button class="button alt" id="share-walima" type="button">Share invitation</button>
                         </div>
@@ -1867,7 +1866,7 @@
         document.querySelector('#share').addEventListener('click', () => { const invitationUrl = 'https://faizanchowdhry.github.io/faizan-zia-invite/wedding-invite.html'; const message = `Join Faizan & Zia on 28th November from 7 PM at Kohinoor Marriage Lawn, 4RQQ+332, Veera Desai Rd, Mhada Colony, Prathmesh Complex, Andheri West, Mumbai, Maharashtra 400053.\n\n${invitationUrl}`; window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank', 'noopener'); });
         const invitationUrl = 'https://faizanchowdhry.github.io/faizan-zia-invite/wedding-invite.html'; const shareOnWhatsApp = message => window.open(`https://wa.me/?text=${encodeURIComponent(`${message}\n\n${invitationUrl}`)}`, '_blank', 'noopener');
         document.querySelector('#share-nikah').addEventListener('click', () => shareOnWhatsApp('Join us for the Nikah on 28th November from 7 PM at Kohinoor Marriage Lawn, 4RQQ+332, Veera Desai Rd, Mhada Colony, Prathmesh Complex, Andheri West, Mumbai, Maharashtra 400053.'));
-        document.querySelector('#share-walima').addEventListener('click', () => shareOnWhatsApp('Join us for the Dawat-e-Walima on 30th November at Sir Elly Kadoorie School and Junior College, Shivdas Champsi Rd, Opposite Chaitya Temple, Tadwadi, Mazgaon, Mumbai, Maharashtra 400010.'));
+        document.querySelector('#share-walima').addEventListener('click', () => shareOnWhatsApp('Join us for the Dawat-e-Walima on 30th November at Sir Elly Kadoorie School and Junior College, XR8Q+HM5, Shivdas Champsi Rd, Opposite Chaitya Temple, Tadwadi, Mazgaon, Mumbai, Maharashtra 400010.'));
         const rsvpForm = document.querySelector('#rsvp');
         function showerPetals() { if (document.body.dataset.petals) return; document.body.dataset.petals = 'done'; for (let index = 0; index < 150; index++) { const petal = document.createElement('span'); const heart = index % 5 === 0; petal.className = heart ? 'petal heart' : 'petal'; petal.textContent = heart ? '♥' : index % 3 === 0 ? '✿' : '❀'; petal.style.left = Math.random() * 100 + 'vw'; petal.style.setProperty('--drift', (Math.random() * 260 - 130) + 'px'); petal.style.setProperty('--fall', (18 + Math.random() * 8) + 's'); petal.style.animationDelay = (Math.random() * 6) + 's'; petal.style.fontSize = (12 + Math.random() * 13) + 'px'; document.body.appendChild(petal); setTimeout(() => petal.remove(), 32000) } }
         envelope.addEventListener('click', showerPetals);
