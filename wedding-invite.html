@@ -1986,7 +1986,7 @@
                 <div class="eyebrow">With love</div>
                 <img class="footer-logo" src="assets/WhatsApp%20Image%202026-09-19%20at%203.36.58%20PM.jpeg"
                     alt="Faizan and Zia gold floral monogram">
-                <h2>Faizan<br><span>&amp;</span><br>Zia</h2>
+                <h2 class="footer-names"><span>Faizan</span><span>&amp;</span><span>Zia</span></h2>
                 <p>We cannot wait to celebrate every beautiful moment with you</p>
             </footer>
         </section>
@@ -3662,6 +3662,80 @@
             text-transform: uppercase
         }
 
+        .countdown .unit strong,
+        .event-date-countdown .unit strong {
+            color: #c9a76b !important
+        }
+
+        .countdown .unit span,
+        .event-date-countdown .unit span {
+            color: #796b59 !important
+        }
+
+        .heart-scratch {
+            background: #e1b968
+        }
+
+        .heart-scratch canvas {
+            background: linear-gradient(135deg, #b58a42, #e1b968 48%, #9c6d2f)
+        }
+
+        .footer h2 {
+            line-height: 1.05 !important
+        }
+
+        .footer h2 span {
+            display: block !important;
+            line-height: 1 !important;
+            margin: 7px 0 !important
+        }
+
+        .footer h2 {
+            line-height: .9 !important;
+        }
+
+        .footer h2 span {
+            line-height: .75 !important;
+            margin: 2px 0 !important;
+        }
+
+        .footer-names {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            line-height: .86 !important;
+            margin: 18px 0 22px !important;
+            font-size: clamp(3.8rem, 9vw, 5.2rem) !important;
+            letter-spacing: .015em;
+            text-shadow: 0 3px 10px rgba(85, 55, 24, .12)
+        }
+
+        .footer-names span {
+            display: block !important;
+            line-height: 1 !important;
+            margin: 0 !important;
+        }
+
+        .footer-names span:nth-child(2) {
+            color: #1f1b17 !important;
+            font-size: .38em;
+            line-height: .8 !important;
+            margin: 4px 0 !important;
+        }
+
+        .footer-names span:first-child,
+        .footer-names span:last-child {
+            color: #3b2a20 !important;
+        }
+
+        .countdown .unit strong,
+        .event-date-countdown .unit strong,
+        .countdown .unit span,
+        .event-date-countdown .unit span {
+            color: #1f1b17 !important;
+        }
+
         .event-date-scratch-wrap {
             overflow: visible
         }
@@ -3748,6 +3822,8 @@
             sparkleLayer.appendChild(star);
         }
         document.body.appendChild(sparkleLayer);
+        const revealHead = document.querySelector('.reveal-head');
+        ['haldi-date', 'nikah-date', 'walima-date'].forEach(id => { const card = document.getElementById(id); if (card) revealHead.appendChild(card); });
     </script>
 </body>
 
